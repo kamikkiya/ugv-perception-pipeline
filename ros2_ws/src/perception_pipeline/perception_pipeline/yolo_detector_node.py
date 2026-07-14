@@ -80,8 +80,17 @@ class YoloDetectorNode(Node):
 
         self.detections_pub.publish(detection_array)
 
-        annotated_msg = self.bridge.cv2_to_imgmsg(frame, encoding='bgr8')
+        # Built manually instead of via cv_bridge.cv2_to_imgmsg: that call's
+        # cvtype_to_name lookup raises KeyError under some cv_bridge/NumPy
+        # combinations even for plain bgr8 arrays.
+        annotated_msg = Image()
         annotated_msg.header = msg.header
+        annotated_msg.height = frame.shape[0]
+        annotated_msg.width = frame.shape[1]
+        annotated_msg.encoding = 'bgr8'
+        annotated_msg.is_bigendian = 0
+        annotated_msg.step = frame.shape[1] * 3
+        annotated_msg.data = frame.tobytes()
         self.annotated_pub.publish(annotated_msg)
 
 
