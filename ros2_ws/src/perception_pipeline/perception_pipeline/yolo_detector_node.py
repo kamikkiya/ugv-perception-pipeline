@@ -17,9 +17,11 @@ class YoloDetectorNode(Node):
 
         self.declare_parameter('model_path', 'yolov8n.pt')
         self.declare_parameter('confidence_threshold', 0.5)
+        self.declare_parameter('image_topic', 'camera/image_raw')
 
         model_path = self.get_parameter('model_path').value
         self.confidence_threshold = self.get_parameter('confidence_threshold').value
+        image_topic = self.get_parameter('image_topic').value
 
         self.get_logger().info(f'Loading YOLO model: {model_path}')
         self.model = YOLO(model_path)
@@ -39,7 +41,7 @@ class YoloDetectorNode(Node):
         )
 
         self.subscription = self.create_subscription(
-            Image, 'camera/image_raw', self.image_callback, sensor_qos)
+            Image, image_topic, self.image_callback, sensor_qos)
         self.detections_pub = self.create_publisher(
             Detection2DArray, 'perception/detections', detections_qos)
         self.annotated_pub = self.create_publisher(

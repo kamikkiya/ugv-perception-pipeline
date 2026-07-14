@@ -24,7 +24,6 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'camera_publisher_node = perception_pipeline.camera_publisher_node:main',
             'yolo_detector_node = perception_pipeline.yolo_detector_node:main',
         ],
     },
