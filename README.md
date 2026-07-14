@@ -65,7 +65,7 @@ First run downloads `yolov8n.pt` automatically via `ultralytics`.
 
 ## Roadmap
 
-1. ~~Webcam + YOLOv8 over ROS 2 (this milestone)~~
+1. Webcam + YOLOv8 over ROS 2 (this milestone)
 2. Gazebo world with mixed terrain (grass/gravel/mud/potholes) + simulated LiDAR
 3. DeepLabV3+ terrain segmentation (fine-tuned on RELLIS-3D/RUGD)
 4. Open3D point-cloud clustering + 3D bounding-box fitting on simulated LiDAR
