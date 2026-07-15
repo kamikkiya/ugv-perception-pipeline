@@ -21,7 +21,6 @@ setup(
     maintainer_email='info@thenucleus.in',
     description='Real-time multi-sensor perception pipeline for autonomous UGV',
     license='Apache-2.0',
-    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'yolo_detector_node = perception_pipeline.yolo_detector_node:main',
